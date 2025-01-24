@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateComercianteDto } from './dto/create-comerciante.dto';
 import { UpdateComercianteDto } from './dto/update-comerciante.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { PaginacionComercianteDto } from './dto/paginacion-comerciante.dto';
 
 @Injectable()
@@ -56,10 +56,14 @@ export class ComerciantesService {
     };
   }
 
-  findOne(id: number) {
-    return this.prismaService.comerciante.findUnique({
+  async findOne(id: number) {
+    const comerciante = await this.prismaService.comerciante.findUnique({
       where: { Id: id },
     });
+    if (!comerciante) {
+      throw new Error('Comerciante no encontrado');
+    }
+    return comerciante;
   }
 
   update(id: number, updateComercianteDto: UpdateComercianteDto) {

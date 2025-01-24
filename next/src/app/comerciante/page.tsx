@@ -15,7 +15,7 @@ interface Comerciante {
   Municipio: string;
 }
 
-export default function PaginaInicio() {
+export default function Comerciante() {
   const { nombre, rol } = useStore();
   const router = useRouter();
   

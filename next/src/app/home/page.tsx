@@ -1,7 +1,7 @@
 'use client';
 
 import { useStore } from '../store/useStore';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface Comerciante {
@@ -23,11 +23,7 @@ export default function Home() {
   const [paginaActual, setPaginaActual] = useState(1);
   const [totalPaginas, setTotalPaginas] = useState(1);
 
-  useEffect(() => {
-    obtenerComerciantes();
-  }, [filtro]);
-
-  const obtenerComerciantes = async () => {
+  const obtenerComerciantes = useCallback(async () => {
     try {
       const respuesta = await fetch('http://localhost:4000/api/Comerciantes/paginacion', {
         credentials: 'include',
@@ -60,7 +56,12 @@ export default function Home() {
     } catch (error) {
       console.error('Error al obtener comerciantes:', error);
     }
-  };
+  }, [elementosPorPagina, filtro, router]);
+
+  useEffect(() => {
+    obtenerComerciantes();
+  }, [filtro, obtenerComerciantes]);
+
 
   const cambiarEstado = async (id: number) => {
     try {
