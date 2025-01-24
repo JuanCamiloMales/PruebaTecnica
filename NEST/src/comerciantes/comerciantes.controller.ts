@@ -13,12 +13,14 @@ import {
 import { ComerciantesService } from './comerciantes.service';
 import { CreateComercianteDto } from './dto/create-comerciante.dto';
 import { UpdateComercianteDto } from './dto/update-comerciante.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { Roles } from 'src/auth/roles.decorator';
-import { RolesGuard } from 'src/auth/roles.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { Roles } from '../auth/roles.decorator';
+import { RolesGuard } from '../auth/roles.guard';
 import { PaginacionComercianteDto } from './dto/paginacion-comerciante.dto';
+import { ApiCookieAuth } from '@nestjs/swagger';
 
 @Controller('comerciantes')
+@ApiCookieAuth('token')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class ComerciantesController {
   constructor(private readonly comerciantesService: ComerciantesService) {}
