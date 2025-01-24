@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum rol {
+  ADMINISTRADOR
+  AUXILIARDEREGISTRO
+}
+
+enum estado {
+  ACTIVO
+  INACTIVO
+}
+
+model Usuario {
+  Id                Int   @id @default(autoincrement())
+  Nombre            String
+  CorreoElectronico String
+  Contrasena        String
+  Rol               rol
+  Comerciante       Comerciante[]
+  Establecimientos   Establecimiento[]
+}
+
+model Comerciante {
+  Id                  Int   @id @default(autoincrement())
+  NombreRazonSocial   String
+  Municipio           String
+  Telefono            String?
+  CorreoElectronico   String?
+  FechaRegistro       DateTime @default(now())
+  Estado              estado   @default(ACTIVO)
+  FechaActualizacion  DateTime? @updatedAt
+  Usuario             Usuario @relation(fields: [UsuarioId], references: [Id])
+  UsuarioId           Int
+  Establecimientos    Establecimiento[]
+}
+
+model Establecimiento {
+  Id                      Int   @id @default(autoincrement())
+  NombreEstablecimiento   String
+  Ingresos                Float
+  NumEmpleados            Int
+  FechaActualizacion      DateTime? @updatedAt
+  Comerciante             Comerciante @relation(fields: [ComercianteId], references: [Id])
+  ComercianteId           Int
+  Usuario                 Usuario @relation(fields: [UsuarioId], references: [Id])
+  UsuarioId               Int
+}
