@@ -31,7 +31,6 @@ async function bootstrap() {
     .setTitle('API Prueba Tecnica')
     .setDescription('API documentation prueba tecnica')
     .setVersion('1.0')
-    .addCookieAuth('token')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);

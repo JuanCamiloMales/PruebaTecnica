@@ -1,16 +1,13 @@
-### 1. POSTGRESQL
-- Se utiliza la version 17.2 de POSTGRESQL
-- En la carpeta POSTGRESQL se encuentra el archivo .sql que contiene las consultas para la prueba de POSTGRESQL
+### 1. PostgreSQL
+- Se utiliza la versión 17.2 de PostgreSQL.
 
-#### Añade imagenes de tablas creadas
+#### Imágenes de las tablas creadas
 
-- Tabla de Usuarios
-![Tabla de Usuarios](./TablaUsuarios.png)
+- **Tabla de Usuarios**:
+  <img src="./TablaUsuarios.png" alt="Tabla de Usuarios" width="500"/>
 
+- **Tabla de Comerciantes**:
+  <img src="./TablaComerciante.png" alt="Tabla de comerciantes" width="500"/>
 
-- Tabla de comerciantes
-![Tabla de Usuarios](./TablaComerciante.png)
-
-
-- Tabla de establecimientos
-![Tabla de Usuarios](./TablaEstablecimiento.png)
+- **Tabla de Establecimientos**:
+  <img src="./TablaEstablecimiento.png" alt="Tabla de establecimientos" width="500"/>
