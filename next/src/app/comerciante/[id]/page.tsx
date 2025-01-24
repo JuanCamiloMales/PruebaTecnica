@@ -1,9 +1,8 @@
-'use client';
+'use client'
 
 import { useStore } from '../../store/useStore';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
 interface Comerciante {
   Id: number;
@@ -15,11 +14,10 @@ interface Comerciante {
   Municipio: string;
 }
 
-export default function PaginaInicio({ params }: { params: { id: string } }) {
+export default function Comerciante() {
   const { nombre, rol } = useStore();
   const router = useRouter();
-  const { id } = params ;
-
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchComerciante = async () => {
